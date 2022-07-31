@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/ctapnio/ctapnio.github.io/static/js/main.5eab4f6b.js",
+    "static/media/moon.png": "/ctapnio/ctapnio.github.io/static/media/moon.2ef251d8030340bed8ba.png",
+    "static/media/sea.png": "/ctapnio/ctapnio.github.io/static/media/sea.b574b2025792d515d5da.png",
+    "static/media/tree2.png": "/ctapnio/ctapnio.github.io/static/media/tree2.7bd3a8a0f8eba4009746.png",
+    "static/media/tree.png": "/ctapnio/ctapnio.github.io/static/media/tree.87ef2427e2d758f2f3af.png",
+    "index.html": "/ctapnio/ctapnio.github.io/index.html",
+    "main.5eab4f6b.js.map": "/ctapnio/ctapnio.github.io/static/js/main.5eab4f6b.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.5eab4f6b.js"
+  ]
+}
