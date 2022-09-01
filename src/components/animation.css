@@ -1,0 +1,17 @@
+/* Copy this @keyframes block to your CSS*/
+
+@keyframes yourAnimation {
+    0.0% {
+        transform: translate(-33vw);
+    }
+    100% {
+        transform: translate(33vw);
+    }
+}
+
+
+/* Add the animation: property to whichever element you want to animate */
+
+.elementToAnimate {
+    animation: yourAnimation 3s ease 0s infinite normal none;
+}
