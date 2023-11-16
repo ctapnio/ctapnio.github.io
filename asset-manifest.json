@@ -1,25 +1,14 @@
 {
   "files": {
-<<<<<<< Updated upstream
-    "main.js": "/static/js/main.7e7bdb22.js",
-=======
-    "main.js": "/static/js/main.499ec9b1.js",
->>>>>>> Stashed changes
+    "main.js": "/static/js/main.01212826.js",
     "static/media/moon.png": "/static/media/moon.2ef251d8030340bed8ba.png",
     "static/media/sea.png": "/static/media/sea.b574b2025792d515d5da.png",
     "static/media/tree2.png": "/static/media/tree2.7bd3a8a0f8eba4009746.png",
     "static/media/tree.png": "/static/media/tree.87ef2427e2d758f2f3af.png",
     "index.html": "/index.html",
-<<<<<<< Updated upstream
-    "main.7e7bdb22.js.map": "/static/js/main.7e7bdb22.js.map"
+    "main.01212826.js.map": "/static/js/main.01212826.js.map"
   },
   "entrypoints": [
-    "static/js/main.7e7bdb22.js"
-=======
-    "main.499ec9b1.js.map": "/static/js/main.499ec9b1.js.map"
-  },
-  "entrypoints": [
-    "static/js/main.499ec9b1.js"
->>>>>>> Stashed changes
+    "static/js/main.01212826.js"
   ]
 }
