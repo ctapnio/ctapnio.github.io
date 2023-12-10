@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/static/js/main.05aea4a0.js",
+    "static/media/moonPic.png": "/static/media/moonPic.007bbc9bb3fb25013563.png",
+    "static/media/vancouverPic.png": "/static/media/vancouverPic.4a7d4edaeb2abc7b8613.png",
+    "static/media/treePic.png": "/static/media/treePic.c00df78c2ec4b23a9fcb.png",
+    "index.html": "/index.html",
+    "main.05aea4a0.js.map": "/static/js/main.05aea4a0.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.05aea4a0.js"
+  ]
+}
