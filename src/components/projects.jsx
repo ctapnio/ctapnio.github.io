@@ -75,14 +75,7 @@ const Title = styled.h1`
 const ProjectTitle = styled.h1`
   color: black !important;
 `;
-const GhostPostContent = styled.div`
-  color: #333 !important; // Replace with your actual styles
-  font-size: 16px !important; // Replace with your actual styles
-  line-height: 1.6 !important; // Replace with your actual styles
-  overflow-y: scroll; // If you want to add scrolling
-  max-height: 500px; // Set a max-height for scrolling
-  // Add other styles as needed
-`;
+
 
 const getModalStyle = () => ({
   position: "absolute",
