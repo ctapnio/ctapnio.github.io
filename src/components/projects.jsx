@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FreeMode, Pagination } from "swiper/modules";
+import DOMPurify from "dompurify";
 
 const StyledSwiper = styled(Swiper)`
   width: 50%;
@@ -91,19 +92,7 @@ const getModalStyle = () => ({
   borderRadius: "10px",
 });
 
-const GhostPostContent = styled.div`
-  color: #333;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-y: scroll;
-  max-height: 500px;
 
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-`;
 
 const Projects = () => {
   const [posts, setPosts] = useState([]);
@@ -114,22 +103,22 @@ const Projects = () => {
     window.innerWidth < 600 ? 1 : 2
   );
 
-//   const GhostPostContent = styled.div`
-//   color: #333 !important; // Existing styles
-//   font-size: 16px !important;
-//   line-height: 1.6 !important;
-//   overflow-y: scroll;
-//   max-height: 500px;
+  const GhostPostContent = styled.div`
+  color: #333 !important; // Existing styles
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  overflow-y: scroll;
+  max-height: 500px;
   
-//   // Target images within the content
-//   img {
-//     max-width: 100% !important; // Ensure images are not wider than the container
-//     height: auto !important; // Maintain aspect ratio
-//     display: block !important; // Remove potential extra space below images
-//   }
+  // Target images within the content
+  img {
+    max-width: 100% !important; // Ensure images are not wider than the container
+    height: auto !important; // Maintain aspect ratio
+    display: block !important; // Remove potential extra space below images
+  }
 
-//   // Add other styles as needed
-// `;
+  // Add other styles as needed
+`;
   const handleOpen = (post) => {
     setCurrentPost(post);
     setOpen(true);
@@ -188,7 +177,7 @@ const Projects = () => {
             <div>
               <ProjectTitle>{currentPost.title}</ProjectTitle>
               <GhostPostContent
-                dangerouslySetInnerHTML={{ __html: currentPost.html }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(currentPost.html) }}
               />
             </div>
           )}
