@@ -118,9 +118,9 @@ const Projects = () => {
   
   // Target images within the content
   img {
-    max-width: 100%; // Ensure images are not wider than the container
-    height: auto; // Maintain aspect ratio
-    display: block; // Remove potential extra space below images
+    max-width: 100% !important; // Ensure images are not wider than the container
+    height: auto !important; // Maintain aspect ratio
+    display: block !important; // Remove potential extra space below images
   }
 
   // Add other styles as needed
