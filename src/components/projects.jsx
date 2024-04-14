@@ -185,15 +185,9 @@ const Projects = () => {
           {currentPost && (
             <div>
               <ProjectTitle>{currentPost.title}</ProjectTitle>
-              {/* <GhostPostContent className="GhostPostContent"
+              <GhostPostContent className="GhostPostContent"
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(currentPost.html) }}
-              /> */}
-              <GhostPostContent
-  className="GhostPostContent"
-  dangerouslySetInnerHTML={{
-    __html: DOMPurify.sanitize(currentPost && currentPost.html),
-  }}
-/>
+              />
             </div>
           )}
         </Box>
