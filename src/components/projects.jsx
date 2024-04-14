@@ -79,6 +79,7 @@ const ProjectTitle = styled.h1`
 `;
 
 
+
 const getModalStyle = () => ({
   position: "absolute",
   top: "50%",
@@ -110,7 +111,23 @@ const Projects = () => {
     window.innerWidth < 600 ? 1 : 2
   );
 
- 
+  useEffect(() => {
+    if (currentPost) {
+      let parser = new DOMParser();
+      let doc = parser.parseFromString(currentPost.html, 'text/html');
+  
+      doc.querySelectorAll('img').forEach(img => {
+        // Override the sizes attribute to always use the 600w image
+        img.setAttribute('sizes', '(min-width: 0px) 600px');
+      });
+  
+      const sanitizedHtml = DOMPurify.sanitize(doc.documentElement.innerHTML);
+      setCurrentPost({
+        ...currentPost,
+        html: sanitizedHtml
+      });
+    }
+  }, [currentPost]);
   const handleOpen = (post) => {
     setCurrentPost(post);
     setOpen(true);
@@ -168,9 +185,15 @@ const Projects = () => {
           {currentPost && (
             <div>
               <ProjectTitle>{currentPost.title}</ProjectTitle>
-              <GhostPostContent className="GhostPostContent"
+              {/* <GhostPostContent className="GhostPostContent"
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(currentPost.html) }}
-              />
+              /> */}
+              <GhostPostContent
+  className="GhostPostContent"
+  dangerouslySetInnerHTML={{
+    __html: DOMPurify.sanitize(currentPost && currentPost.html),
+  }}
+/>
             </div>
           )}
         </Box>
