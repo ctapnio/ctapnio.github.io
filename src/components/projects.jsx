@@ -41,7 +41,7 @@ cursor: pointer;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-image: url(${(props) => props.image});
+  background-image: url(${(props) => props.$image});
   background-size: cover;
   background-position: center;
   opacity: 1; // Make image like a watermark
@@ -93,7 +93,13 @@ const getModalStyle = () => ({
   borderRadius: "10px",
 });
 
-
+const GhostPostContent = styled.div`
+color: #333 !important; // Existing styles
+font-size: 16px !important;
+line-height: 1.6 !important;
+overflow-y: scroll;
+max-height: 500px;
+`;
 
 const Projects = () => {
   const [posts, setPosts] = useState([]);
@@ -104,17 +110,7 @@ const Projects = () => {
     window.innerWidth < 600 ? 1 : 2
   );
 
-  const GhostPostContent = styled.div`
-  color: #333 !important; // Existing styles
-  font-size: 16px !important;
-  line-height: 1.6 !important;
-  overflow-y: scroll;
-  max-height: 500px;
-  
  
-
-  // Add other styles as needed
-`;
   const handleOpen = (post) => {
     setCurrentPost(post);
     setOpen(true);
@@ -157,7 +153,7 @@ const Projects = () => {
       >
         {posts.map((post) => (
           <StyledSwiperSlide key={post.id} onClick={() => handleOpen(post)}>
-            <SlideImage image={post.feature_image} />
+            <SlideImage $image={post.feature_image} />
             <SlideTitle>{post.title}</SlideTitle>
           </StyledSwiperSlide>
         ))}
