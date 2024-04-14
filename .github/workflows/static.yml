@@ -33,7 +33,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '16'
           
       - name: Install Dependencies
         run: npm ci
@@ -41,6 +41,7 @@ jobs:
       - name: Build Project
         run: npm run build
         env:
+          NODE_OPTIONS: --openssl-legacy-provider
           REACT_APP_GHOST_API_URL: ${{ secrets.REACT_APP_GHOST_API_URL }}
           REACT_APP_GHOST_API_KEY: ${{ secrets.REACT_APP_GHOST_API_KEY }}
           REACT_APP_GHOST_API_VERSION: ${{ secrets.REACT_APP_GHOST_API_VERSION }}
