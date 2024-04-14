@@ -41,7 +41,6 @@ jobs:
       - name: Build Project
         run: npm run build
         env:
-          NODE_OPTIONS: --openssl-legacy-provider
           REACT_APP_GHOST_API_URL: ${{ secrets.REACT_APP_GHOST_API_URL }}
           REACT_APP_GHOST_API_KEY: ${{ secrets.REACT_APP_GHOST_API_KEY }}
           REACT_APP_GHOST_API_VERSION: ${{ secrets.REACT_APP_GHOST_API_VERSION }}
