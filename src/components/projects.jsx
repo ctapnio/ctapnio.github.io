@@ -5,12 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
+import { Box, Modal } from "@mui/material";
 import { FreeMode, Pagination } from "swiper/modules";
 import DOMPurify from "dompurify";
 import "../App.css";
 
+// Styled components for Swiper and slides
 const StyledSwiper = styled(Swiper)`
   width: 50%;
   height: 50%;
@@ -21,13 +21,12 @@ const StyledSwiper = styled(Swiper)`
 `;
 
 const StyledSwiperSlide = styled(SwiperSlide)`
-  
   text-align: center;
   font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; // Needed for absolute positioning of children
+  position: relative;
   border-radius: 30px;
   box-shadow: 5px 5px 8px black;
   @media (max-width: 768px) {
@@ -36,7 +35,7 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 `;
 
 const SlideImage = styled.div`
-cursor: pointer;
+  cursor: pointer;
   display: block;
   width: 100%;
   height: 100%;
@@ -44,12 +43,11 @@ cursor: pointer;
   background-image: url(${(props) => props.$image});
   background-size: cover;
   background-position: center;
-  opacity: 1; // Make image like a watermark
-  filter: brightness(50%)  blur(1px);
+  opacity: 1;
+  filter: brightness(50%) blur(1px);
   border-radius: 30px;
-  
   @media (max-width: 768px) {
-    border-radius: 10px 10px 8px black;
+    border-radius: 10px;
   }
 `;
 
@@ -57,8 +55,8 @@ const SlideTitle = styled.div`
   font-size: 35px;
   font-weight: 300;
   position: absolute;
-  z-index: 10; // Above the watermark image
-  color: white; // Assuming a dark watermark for visibility
+  z-index: 10;
+  color: white;
 `;
 
 const Container = styled.section`
@@ -74,30 +72,30 @@ const Container = styled.section`
 const Title = styled.h1`
   color: #fff;
 `;
+
 const ProjectTitle = styled.h1`
   color: black !important;
 `;
 
-
-const getModalStyle = () => ({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: window.innerWidth < 600 ? "80vw" : "600px", // Use 100% width for screens smaller than 600px
-  maxHeight: "80vh",
-  bgcolor: "#cbd1d7",
-  border: "none",
-  p: 4,
-  overflowY: "auto",
-  borderRadius: "10px",
-});
+const StyledModalBox = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: ${() => (window.innerWidth < 600 ? '80vw' : '600px')};
+  max-height: 80vh;
+  background-color: #cbd1d7;
+  border: none;
+  padding: 16px; // Assuming 4 units of theme spacing is 16px
+  overflow-y: auto;
+  border-radius: 10px;
+`;
 
 const GhostPostContent = styled.div`
   img {
-    max-width: 100%; // Images will scale to the width of the container
-    height: auto; // Maintain aspect ratio
-    display: block; // Remove potential extra space below images
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 `;
 
@@ -105,12 +103,14 @@ const Projects = () => {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
-  const [modalStyle, setModalStyle] = useState(getModalStyle());
-  const [slidesPerView, setSlidesPerView] = useState(
-    window.innerWidth < 600 ? 1 : 2
-  );
 
- 
+  useEffect(() => {
+    api.posts
+      .browse({ limit: 5, include: "tags,authors" })
+      .then((posts) => setPosts(posts))
+      .catch((err) => console.error(err));
+  }, []);
+
   const handleOpen = (post) => {
     setCurrentPost(post);
     setOpen(true);
@@ -121,31 +121,11 @@ const Projects = () => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    api.posts
-      .browse({ limit: 5, include: "tags,authors" })
-      .then((posts) => setPosts(posts))
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setModalStyle(getModalStyle());
-      setSlidesPerView(window.innerWidth < 600 ? 1 : 2);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures effect is only run on mount and unmount
- 
-  
   return (
     <Container id="projects">
       <Title>Projects</Title>
       <StyledSwiper
-        slidesPerView={slidesPerView}
+        slidesPerView={window.innerWidth < 600 ? 1 : 2}
         spaceBetween={30}
         freeMode={true}
         pagination={{ clickable: true }}
@@ -164,16 +144,14 @@ const Projects = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={modalStyle}>
+        <StyledModalBox>
           {currentPost && (
             <div>
               <ProjectTitle>{currentPost.title}</ProjectTitle>
-              <GhostPostContent className="GhostPostContent"
-                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(currentPost.html) }}
-              />
+              <GhostPostContent dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(currentPost.html) }} />
             </div>
           )}
-        </Box>
+        </StyledModalBox>
       </Modal>
     </Container>
   );
