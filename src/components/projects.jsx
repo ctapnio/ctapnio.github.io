@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FreeMode, Pagination } from "swiper/modules";
 import DOMPurify from "dompurify";
+import "../App.css";
 
 const StyledSwiper = styled(Swiper)`
   width: 50%;
@@ -110,12 +111,7 @@ const Projects = () => {
   overflow-y: scroll;
   max-height: 500px;
   
-  // Target images within the content
-  img {
-    max-width: 100% !important; // Ensure images are not wider than the container
-    height: auto !important; // Maintain aspect ratio
-    display: block !important; // Remove potential extra space below images
-  }
+ 
 
   // Add other styles as needed
 `;
@@ -176,7 +172,7 @@ const Projects = () => {
           {currentPost && (
             <div>
               <ProjectTitle>{currentPost.title}</ProjectTitle>
-              <GhostPostContent
+              <GhostPostContent className="GhostPostContent"
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(currentPost.html) }}
               />
             </div>
