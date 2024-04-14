@@ -79,7 +79,6 @@ const ProjectTitle = styled.h1`
 `;
 
 
-
 const getModalStyle = () => ({
   position: "absolute",
   top: "50%",
@@ -98,7 +97,7 @@ const GhostPostContent = styled.div`
   img {
     max-width: 100%; // Images will scale to the width of the container
     height: auto; // Maintain aspect ratio
-    display: cover; // Remove potential extra space below images
+    display: block; // Remove potential extra space below images
   }
 `;
 
@@ -111,23 +110,7 @@ const Projects = () => {
     window.innerWidth < 600 ? 1 : 2
   );
 
-  useEffect(() => {
-    if (currentPost) {
-      let parser = new DOMParser();
-      let doc = parser.parseFromString(currentPost.html, 'text/html');
-  
-      doc.querySelectorAll('img').forEach(img => {
-        // Override the sizes attribute to always use the 600w image
-        img.setAttribute('sizes', '(min-width: 0px) 600px');
-      });
-  
-      const sanitizedHtml = DOMPurify.sanitize(doc.documentElement.innerHTML);
-      setCurrentPost({
-        ...currentPost,
-        html: sanitizedHtml
-      });
-    }
-  }, [currentPost]);
+ 
   const handleOpen = (post) => {
     setCurrentPost(post);
     setOpen(true);
