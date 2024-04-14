@@ -1,5 +1,5 @@
-.GhostPostContent img{
-    max-width: 100%;
+.GhostPostContent figure img{
+    max-width: 100% !important;
     height: auto;
     display: block ;
 }
