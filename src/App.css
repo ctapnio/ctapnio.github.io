@@ -3,3 +3,9 @@
     height: auto;
     display: block ;
 }
+
+img.kg-image {
+    max-width: 100%; 
+    width: 100%;      
+    height: auto;     
+}
