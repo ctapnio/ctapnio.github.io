@@ -94,11 +94,11 @@ const getModalStyle = () => ({
 });
 
 const GhostPostContent = styled.div`
-color: #333 !important; // Existing styles
-font-size: 16px !important;
-line-height: 1.6 !important;
-overflow-y: scroll;
-max-height: 500px;
+  img {
+    max-width: 100%; // Images will scale to the width of the container
+    height: auto; // Maintain aspect ratio
+    display: cover; // Remove potential extra space below images
+  }
 `;
 
 const Projects = () => {
