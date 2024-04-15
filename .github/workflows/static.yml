@@ -38,9 +38,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Install Swiper
-        run: npm install swiper/react
-
       - name: Build Project
         run: npm run build
         env:
