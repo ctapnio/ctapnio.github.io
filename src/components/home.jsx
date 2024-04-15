@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Container = styled.section`
   height: 100vh;
   scroll-snap-align: start;
+  /* background-color: #cbd1d7; */
   display: flex;
   align-items: center;
   justify-content: center;
